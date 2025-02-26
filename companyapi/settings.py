@@ -123,3 +123,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#throttling setting for employee to list and create
+REST_FRAMEWORK={
+    'DEFAULT_THROTTLE_RATES':{
+        'anon': '3/day',
+        'user': '3/day'
+
+    }
+}
+

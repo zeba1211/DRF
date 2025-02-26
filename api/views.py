@@ -4,8 +4,9 @@ from api.models import Company,Employee
 from api.serializers import CompanySerializer,EmployeeCreateSerializer, EmployeeSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
 from rest_framework import generics
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
+
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
@@ -34,6 +35,8 @@ class CompanyViewSet(viewsets.ModelViewSet):
 class EmployeeListCreateView(generics.ListCreateAPIView):
     queryset=Employee.objects.all()
     serializer_class=EmployeeCreateSerializer
+    #apply throttling to employee model for listing and creating employee 3/day
+    throttle_classes=[AnonRateThrottle,UserRateThrottle]
 
     def get_serializer_class(self):
         if self.request.method=='POST':
