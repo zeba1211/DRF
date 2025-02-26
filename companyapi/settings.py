@@ -129,7 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK={
     'DEFAULT_THROTTLE_RATES':{
         'anon': '3/day',
-        'user': '3/day'
+        'user': '3/day',
+        'emp':'5/hour',
 
     }
 }

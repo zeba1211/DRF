@@ -6,6 +6,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
+#for mudule throttling
+from api.throttling import empRateThrottle
 
 
 
@@ -48,5 +50,6 @@ class EmployeeUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset=Employee.objects.all()
     serializer_class=EmployeeSerializer
     lookup_field='id'
-    
+    #module throttling 5/hour for update and delete emp
+    throttle_classes=[AnonRateThrottle,empRateThrottle]
     
