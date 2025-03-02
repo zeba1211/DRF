@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api'
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'companyapi.urls'
@@ -128,10 +129,39 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #throttling setting for employee to list and create
 REST_FRAMEWORK={
     'DEFAULT_THROTTLE_RATES':{
-        'anon': '3/day',
-        'user': '3/day',
-        'emp':'5/hour',
+        'anon': '100/day',
+        'user': '100/day',
+        'emp':'100/hour',
 
     }
 }
+
+
+#logging implementation
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'requests.log',
+
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file','console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
+
 

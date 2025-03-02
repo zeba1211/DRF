@@ -5,12 +5,18 @@ from api.serializers import CompanySerializer,EmployeeCreateSerializer, Employee
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import generics
+from django.http import JsonResponse
+from rest_framework import serializers
+
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 #for mudule throttling
 from api.throttling import empRateThrottle
+import logging
 
 
 
+
+#Model_view_set
 class CompanyViewSet(viewsets.ModelViewSet):
     queryset= Company.objects.all()
     serializer_class=CompanySerializer
@@ -22,6 +28,8 @@ class CompanyViewSet(viewsets.ModelViewSet):
             company=Company.objects.get(pk=pk)
             emps=Employee.objects.filter(company=company)
             emps_serializer=EmployeeSerializer(emps,many=True,context={'request':request})
+
+            logger.info(f"Employees for company {company.name} from IP: {request.META.get('REMOTE_ADDR')}")
             return Response(emps_serializer.data)
         except Exception as e:
             print(e)
@@ -34,6 +42,10 @@ class CompanyViewSet(viewsets.ModelViewSet):
 #     serializer_class=EmployeeSerializer
 
 
+#Generic_view_set
+#logger initiate
+logger = logging.getLogger(__name__)
+
 class EmployeeListCreateView(generics.ListCreateAPIView):
     queryset=Employee.objects.all()
     serializer_class=EmployeeCreateSerializer
@@ -45,11 +57,51 @@ class EmployeeListCreateView(generics.ListCreateAPIView):
             return EmployeeCreateSerializer
         return EmployeeSerializer
     
+    def get(self, request, *args, **kwargs):
+        # Log GET requests
+        logger.info(f"Employee list viewed by{request.user} from IP: {request.META.get('REMOTE_ADDR')}")
+        return super().get(request, *args, **kwargs)
+
+    def post(self, serializers):
+            # Log POST requests
+            logger.info(f"Employee created with data: {serializers}")
+            return super().post(serializers)
+
+
 
 class EmployeeUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset=Employee.objects.all()
     serializer_class=EmployeeSerializer
-    lookup_field='id'
-    #module throttling 5/hour for update and delete emp
+    #lookup_field='id'
+    #module throttling 100/hour for update and delete emp
     throttle_classes=[AnonRateThrottle,empRateThrottle]
     
+
+
+    def get(self, request, *args, **kwargs):
+        # Log GET requests
+        logger.info(f"Employee retrived (ID:{kwargs['pk']})by {request.user}from IP {request.META.get('REMOTE_ADDR')}")
+
+        return super().retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        # Log PUT requests (update)
+        logger.info(f"Employee updated (ID:{kwargs['pk']})with data:{request.data} by{request.user}from IP {request.META.get('REMOTE_ADDR')}")
+
+        return super().update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        # Log PATCH requests (partial update)
+        logger.info(f"Employee partially updated (ID:{kwargs['pk']})with data:{request.data} by{request.user}from IP {request.META.get('REMOTE_ADDR')}")
+        return super().partial_update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        # Log DELETE requests
+        logger.info(f"Employee deleted (ID:{kwargs['pk']}) by {request.user} from IP: {request.META.get('REMOTE_ADDR')}")
+        return super().destroy(request, *args, **kwargs)
+
+
+
+
+
+
