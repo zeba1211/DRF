@@ -4657,3 +4657,233 @@ Employee created with data: <rest_framework.request.Request: POST '/api/v1/emplo
 Watching for file changes with StatReloader
 Not Found: /
 Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:17)by zebafrom IP 127.0.0.1
+Employee deleted (ID:17) by zeba from IP: 127.0.0.1
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: silk_request
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\models.py", line 195, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: silk_request
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: silk_request
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\models.py", line 195, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: silk_request
+Internal Server Error: /api/v1/employees/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: silk_request
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\models.py", line 195, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: silk_request
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: silk_request
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\models.py", line 195, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: silk_request
+C:\Users\Lenovo\GitDemo\DRF\companyapi\companyapi\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:6)by zebafrom IP 127.0.0.1
+Employees for company Zebronics from IP: 127.0.0.1
