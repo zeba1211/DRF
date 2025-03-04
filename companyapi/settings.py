@@ -182,3 +182,6 @@ SILKY_TRACK_DATABASE_QUERY_COST = True  # Track cost of SQL queries if applicabl
 
 # You can control the granularity of the profiling
 SILKY_MAX_REQUESTS = 100  # Set the max number of requests to track in memory for profiling
+
+SILKY_INTERCEPT_PERCENT=100 #capture 100% of request
+SILKY_PYTHON_PROFILE=True #enable function profiling

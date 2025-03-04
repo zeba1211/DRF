@@ -4968,3 +4968,94 @@ Employee updated (ID:22)with data:<QueryDict: {'name': ['meenakshi sawarkar'], '
 Employee list viewed byzeba from IP: 127.0.0.1
 Employee created with data: <rest_framework.request.Request: POST '/api/v1/employees/'>
 Employees for company xyzzz from IP: 127.0.0.1
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee created with data: <rest_framework.request.Request: POST '/api/v1/employees/'>
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:28)by zebafrom IP 127.0.0.1
+Not Found: /api/v1/employees/28/
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:24)by zebafrom IP 127.0.0.1
+Employee deleted (ID:24) with data:<QueryDict: {}> by zeba from IP: 127.0.0.1
+C:\Users\Lenovo\GitDemo\DRF\DRF\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lenovo\GitDemo\DRF\DRF\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+Employee list viewed byzeba from IP: 127.0.0.1
+C:\Users\Lenovo\GitDemo\DRF\DRF\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lenovo\GitDemo\DRF\DRF\companyapi\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:6)by zebafrom IP 127.0.0.1
+C:\Users\Lenovo\GitDemo\DRF\DRF\companyapi\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Employee retrived (ID:6)by zebafrom IP 127.0.0.1
+Employee retrived (ID:6)by zebafrom IP 127.0.0.1
+Employee list viewed byzeba from IP: 127.0.0.1
+C:\Users\Lenovo\GitDemo\DRF\DRF\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:6)by zebafrom IP 127.0.0.1
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:11)by zebafrom IP 127.0.0.1
+Employee retrived (ID:11)by zebafrom IP 127.0.0.1
+Internal Server Error: /api/v1/employees/11/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\profiling\profiler.py", line 161, in wrapped_target
+    result = target(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\DRF\api\views.py", line 99, in post
+    return super().create(request, *args, **kwargs)
+AttributeError: 'super' object has no attribute 'create'
+Employee retrived (ID:11)by zebafrom IP 127.0.0.1
+Internal Server Error: /api/v1/employees/11/
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\djangoenv\lib\site-packages\silk\profiling\profiler.py", line 161, in wrapped_target
+    result = target(*args, **kwargs)
+  File "C:\Users\Lenovo\GitDemo\DRF\DRF\api\views.py", line 99, in post
+    return super().create(request, *args, **kwargs)
+AttributeError: 'super' object has no attribute 'create'
+C:\Users\Lenovo\GitDemo\DRF\DRF\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:6)by zebafrom IP 127.0.0.1
+Employee updated (ID:6)with data:<QueryDict: {'name': ['sakshi jagtap'], 'email': ['sakshiiiii9333@gmail.com'], 'address': ['Baramati'], 'phone': ['9767417567'], 'about': ['work experience-1yr'], 'position': ['Software Developer'], 'company': ['8']}> byzebafrom IP 127.0.0.1
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:20)by zebafrom IP 127.0.0.1
+Employee deleted (ID:20) by zeba from IP: 127.0.0.1
