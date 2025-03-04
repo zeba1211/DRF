@@ -1,3 +1,4 @@
+from silk.profiling.profiler import silk_profile
 from django.shortcuts import render
 from rest_framework import viewsets
 from api.models import Company,Employee
@@ -46,6 +47,7 @@ class CompanyViewSet(viewsets.ModelViewSet):
 #logger initiate
 logger = logging.getLogger(__name__)
 
+
 class EmployeeListCreateView(generics.ListCreateAPIView):
     queryset=Employee.objects.all()
     serializer_class=EmployeeCreateSerializer
@@ -58,13 +60,15 @@ class EmployeeListCreateView(generics.ListCreateAPIView):
         return EmployeeSerializer
     
     def get(self, request, *args, **kwargs):
+        with silk_profile(name=f"fetching employee"):
         # Log GET requests
-        logger.info(f"Employee list viewed by{request.user} from IP: {request.META.get('REMOTE_ADDR')}")
+            logger.info(f"Employee list viewed by{request.user} from IP: {request.META.get('REMOTE_ADDR')}")
         return super().get(request, *args, **kwargs)
 
     def post(self, serializers):
+            with silk_profile(name=f"creating employee "):
             # Log POST requests
-            logger.info(f"Employee created with data: {serializers}")
+                logger.info(f"Employee created with data: {serializers}")
             return super().post(serializers)
 
 
@@ -79,25 +83,29 @@ class EmployeeUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
 
     def get(self, request, *args, **kwargs):
+        with silk_profile(name=f"fetching employee"):
         # Log GET requests
-        logger.info(f"Employee retrived (ID:{kwargs['pk']})by {request.user}from IP {request.META.get('REMOTE_ADDR')}")
+            logger.info(f"Employee retrived (ID:{kwargs['pk']})by {request.user}from IP {request.META.get('REMOTE_ADDR')}")
 
         return super().retrieve(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):
+        with silk_profile(name=f"updating employee"):
         # Log PUT requests (update)
-        logger.info(f"Employee updated (ID:{kwargs['pk']})with data:{request.data} by{request.user}from IP {request.META.get('REMOTE_ADDR')}")
+            logger.info(f"Employee updated (ID:{kwargs['pk']})with data:{request.data} by{request.user}from IP {request.META.get('REMOTE_ADDR')}")
 
         return super().update(request, *args, **kwargs)
 
     def patch(self, request, *args, **kwargs):
+        with silk_profile(name=f"updating employee"):
         # Log PATCH requests (partial update)
-        logger.info(f"Employee partially updated (ID:{kwargs['pk']})with data:{request.data} by{request.user}from IP {request.META.get('REMOTE_ADDR')}")
+            logger.info(f"Employee partially updated (ID:{kwargs['pk']})with data:{request.data} by{request.user}from IP {request.META.get('REMOTE_ADDR')}")
         return super().partial_update(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
+        with silk_profile(name=f"deleting employee"):
         # Log DELETE requests
-        logger.info(f"Employee deleted (ID:{kwargs['pk']}) by {request.user} from IP: {request.META.get('REMOTE_ADDR')}")
+            logger.info(f"Employee deleted (ID:{kwargs['pk']}) by {request.user} from IP: {request.META.get('REMOTE_ADDR')}")
         return super().destroy(request, *args, **kwargs)
 
 

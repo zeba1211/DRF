@@ -39,16 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
+    'silk',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'silk.middleware.SilkyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'companyapi.urls'
@@ -164,3 +167,18 @@ LOGGING = {
 }
 
 
+# You can set a maximum limit for the number of queries Silk will track.
+SILKY_MAX_QUERIES = 50  # Only track and display the first 50 queries for each request
+
+# Optionally, limit how many SQL queries are considered "slow" (in milliseconds)
+SILKY_SLOW_QUERY_THRESHOLD_MS = 500  # Queries taking longer than 500ms will be considered slow
+
+# Enabling query profiling
+SILKY_INTERCEPT_COLLECTORS = True  # This collects data on the SQL queries
+
+# Optional settings to adjust what Silk tracks:
+SILKY_LOG_QUERY_STRING = True  # Log the query string (not just the SQL)
+SILKY_TRACK_DATABASE_QUERY_COST = True  # Track cost of SQL queries if applicable
+
+# You can control the granularity of the profiling
+SILKY_MAX_REQUESTS = 100  # Set the max number of requests to track in memory for profiling
