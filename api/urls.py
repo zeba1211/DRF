@@ -13,8 +13,6 @@ urlpatterns = [
     path('',include(router.urls)),
       # This is the view for the home page
 
-
-
     path('employees/', EmployeeListCreateView.as_view(), name='employee-list-create'),
     path('employees/<int:pk>/', EmployeeUpdateDestroyView.as_view(),name='employee-details'),
 

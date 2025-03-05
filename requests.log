@@ -5059,3 +5059,25 @@ Employee updated (ID:6)with data:<QueryDict: {'name': ['sakshi jagtap'], 'email'
 Employee list viewed byzeba from IP: 127.0.0.1
 Employee retrived (ID:20)by zebafrom IP 127.0.0.1
 Employee deleted (ID:20) by zeba from IP: 127.0.0.1
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Employee retrived (ID:20)by zebafrom IP 127.0.0.1
+Not Found: /api/v1/employees/20/
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:11)by zebafrom IP 127.0.0.1
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:13)by zebafrom IP 127.0.0.1
+Employee list viewed byzeba from IP: 127.0.0.1
+Employee retrived (ID:6)by zebafrom IP 127.0.0.1
+Employee deleted (ID:6) by zeba from IP: 127.0.0.1
+C:\Users\Lenovo\GitDemo\DRF\DRF\api\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Employee list viewed byzeba from IP: 127.0.0.1

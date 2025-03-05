@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'companyapi.middleware.SilkAccessMiddleware',
     
 ]
 
@@ -142,29 +143,29 @@ REST_FRAMEWORK={
 #logging implementation
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': 'requests.log',
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': 'requests.log',
 
-        },
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        '': {
-            'handlers': ['file','console'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-    },
-}
+#         },
+#         'console': {
+#             'level': 'INFO',
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         '': {
+#             'handlers': ['file','console'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#     },
+# }
 
 
 # You can set a maximum limit for the number of queries Silk will track.
@@ -185,3 +186,4 @@ SILKY_MAX_REQUESTS = 100  # Set the max number of requests to track in memory fo
 
 SILKY_INTERCEPT_PERCENT=100 #capture 100% of request
 SILKY_PYTHON_PROFILE=True #enable function profiling
+SILK_ENABLED = True

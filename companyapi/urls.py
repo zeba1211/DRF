@@ -16,9 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+#silk authentication
+from django.conf import settings
+from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponseForbidden
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+
+# Custom decorator to check if the user is a superuser or staff (admin)
+def is_superuser_or_admin(user):
+    return user.is_superuser or user.is_staff
+
+
+# Custom view for Silk access control
+@user_passes_test(is_superuser_or_admin, login_url='/admin/login/')
+def silk_view(request):
+    return redirect('silk:index')  # This assumes the 'silk:index' URL is correct
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/',include('api.urls')),
-    path('silk/',include('silk.urls')),
+    # Silk profiling URL with restricted access
+    path('silk/', include('silk.urls', namespace='silk')),  # Use the custom view to control access
+    
 ]
