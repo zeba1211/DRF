@@ -38,5 +38,4 @@ urlpatterns = [
     path('api/v1/',include('api.urls')),
     # Silk profiling URL with restricted access
     path('silk/', include('silk.urls', namespace='silk')),  # Use the custom view to control access
-    
 ]

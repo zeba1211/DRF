@@ -117,4 +117,79 @@ class EmployeeUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+# from django.shortcuts import render
+# from .models import Request  # Assuming you have a Request model to track request data
+# from silk.profiling.profiler import silk_profile
+
+# # View function to render the summary page and pass data
+# def summary_view(request):
+#     # Fetch data for the chart
+#     # Assuming you have a model or data source from which you fetch the request counts, durations, or other data
+#     # For example, let's use sample data for the chart
+
+#     # Sample data for the chart (replace with actual logic to fetch data from your database)
+#     chart_labels = ['Request 1', 'Request 2', 'Request 3', 'Request 4']
+#     chart_data = [100, 200, 300, 400]  # Example data for the chart
+    
+#     # Get the necessary statistics from the database
+#     num_requests = Request.objects.count()  # Example: Total number of requests
+#     num_profiles = 50  # Example: Total number of profiles
+#     avg_overall_time = 120.5  # Example: Average overall time
+#     avg_num_queries = 12.4  # Example: Average number of queries
+#     avg_time_spent_on_queries = 35.2  # Example: Average time spent on queries
+
+#     # Fetch some data for the views like 'longest_queries_by_view' and 'most_time_spent_in_db'
+#     longest_queries_by_view = Request.objects.order_by('-duration')[:5]  # Example: Longest 5 queries
+#     most_time_spent_in_db = Request.objects.order_by('-db_time')[:5]  # Example: Most time spent in DB
+#     most_queries = Request.objects.order_by('-num_queries')[:5]  # Example: Most queries
+
+#     # Pass all the data to the template
+#     context = {
+#         'chart_labels': chart_labels,
+#         'chart_data': chart_data,
+#         'num_requests': num_requests,
+#         'num_profiles': num_profiles,
+#         'avg_overall_time': avg_overall_time,
+#         'avg_num_queries': avg_num_queries,
+#         'avg_time_spent_on_queries': avg_time_spent_on_queries,
+#         'longest_queries_by_view': longest_queries_by_view,
+#         'most_time_spent_in_db': most_time_spent_in_db,
+#         'most_queries': most_queries,
+#     }
+
+#     return render(request, 'summary.html', context)
+
+# views.py
+from django.shortcuts import render
+from django.db.models import Avg
+from silk.models import Request  # Adjust import based on your project structure
+
+def summary_view(request):
+    # Assuming you are gathering data from Silk's request logs
+    num_requests = Request.objects.count()
+    num_profiles = Request.objects.distinct('profile').count()
+    
+    # Example of gathering time statistics from Silk logs
+    avg_overall_time = Request.objects.aggregate(Avg('duration'))['duration__avg']
+    avg_num_queries = Request.objects.aggregate(Avg('num_queries'))['num_queries__avg']
+    avg_time_spent_on_queries = Request.objects.aggregate(Avg('db_duration'))['db_duration__avg']
+    
+    # Prepare data for Chart.js (request, response, avg db time, etc.)
+    chart_data = {
+        'requests': [num_requests],  # Example data, can be customized
+        'response_time': [avg_overall_time],
+        'avg_db_time': [avg_time_spent_on_queries],
+        'api': [num_profiles]  # API count can be based on profiles, for example
+    }
+
+    return render(request, 'silk/summary.html', {
+        'num_requests': num_requests,
+        'num_profiles': num_profiles,
+        'avg_overall_time': avg_overall_time,
+        'avg_num_queries': avg_num_queries,
+        'avg_time_spent_on_queries': avg_time_spent_on_queries,
+        'chart_data': chart_data
+    })
+
+
 
