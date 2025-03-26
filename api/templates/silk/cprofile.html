@@ -14,33 +14,32 @@
 
 {% block style %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'silk/css/components/summary.css' %}">
-    <link rel="stylesheet" href="{% static 'silk/css/pages/cprofile.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block menu %}
     {% request_menu request silk_request %}
 {% endblock %}
 
-
 {% block data %}
-    <div class="wrapper">
-        <div id="query-div">
+    <div class="wrapper bg-[#64bff7] p-6">
+        <div id="query-div" class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {% if silk_request.pyprofile %}
-            <div id="pyprofile-div">
-                <div class="heading">
-                    <div class="inner-heading">CProfile</div>
+            <div id="pyprofile-div" class="p-4 bg-white rounded-md shadow-md">
+                <div class="heading mb-4">
+                    <div class="inner-heading text-lg font-semibold">CProfile</div>
                 </div>
-                <div class="description">
+                <div class="description text-sm text-gray-700">
                     The below is a dump from the cPython profiler.
                 </div>
                 {% if silk_request.prof_file %}
-                Click <a href="{% url 'silk:request_profile_download' request_id=silk_request.pk %}">here</a> to download profile.
+                <div class="mt-2">
+                    Click <a href="{% url 'silk:request_profile_download' request_id=silk_request.pk %}" class="text-green-500 hover:text-green-700">here</a> to download profile.
+                </div>
                 {% endif %}
-                <pre class="pyprofile">{{ silk_request.pyprofile }}</pre>
-                {% endif %}
+                <pre class="pyprofile bg-gray-100 p-4 rounded-md text-sm">{{ silk_request.pyprofile }}</pre>
             </div>
+            {% endif %}
         </div>
     </div>
-
 {% endblock %}

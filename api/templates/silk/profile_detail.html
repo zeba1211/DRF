@@ -14,8 +14,8 @@
 
 {% block style %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'silk/css/components/summary.css' %}">
-    <link rel="stylesheet" href="{% static 'silk/css/pages/profile_detail.css' %}">
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block menu %}
@@ -23,13 +23,13 @@
 {% endblock %}
 
 {% block data %}
-    <div class="wrapper">
-        <div id="query-div">
-            <div id="query-info-div">
+    <div class="max-w-screen-xl mx-auto p-8 bg-blue-300"> <!-- Updated background to match theme -->
+        <div id="query-div" class="bg-white p-6 rounded-lg shadow-md">
+            <div id="query-info-div" class="mb-4">
                 {% profile_summary profile %}
             </div>
             <div class="heading">
-                <div class="inner-heading">
+                <div class="inner-heading text-lg font-semibold">
                     {% if profile.file_path and profile.line_num %}
                         {{ profile.file_path }}:{{ profile.line_num }}{% if profile.end_line_num %}:{{ profile.end_line_num }}{% endif %}
                     {% else %}
@@ -37,58 +37,67 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="description">
+            <div class="description text-sm text-gray-700">
                 Below shows where in your code this profile was defined. If your profile was defined dynamically (i.e in your settings.py),
                 then this will show the range of lines that are covered by the profiling.
             </div>
             {% if code %}
-                <pre id="code"><code>{% code code actual_line %}</code></pre>
+                <pre id="code" class="bg-gray-100 p-4 rounded-md text-sm">
+                    <code>{% code code actual_line %}</code>
+                </pre>
             {% elif code_error %}
-                <div id="error-div">
+                <div id="error-div" class="bg-red-100 p-4 rounded-md text-red-600">
                     {{ code_error }}
                 </div>
             {% endif %}
 
-            {% if silk_request.prof_file %}
-            <div class="heading">
-                <div class="inner-heading">Profile graph</div>
-            </div>
-            <div class="description">
-                Below is a graph of the profile, with the nodes coloured by the time taken (red is more time). This should give a good indication of the slowest path through the profiled code.</div>
-
-                <span>Prune nodes taking up less than </span>
-                <input id='percent' type="text" value='5'
-                       onkeypress='return event.charCode >= 48 && event.charCode <= 57 && $("#percent").val().length < 2'
-                       oninput="createViz()"
-                >
-
-                </input>
-                <span>% of the total time</span>
-
-            </div>
-            <div id="graph-div">
-            </div>
-            {% url 'silk:request_profile_dot' request_id=silk_request.pk as profile_dot_url %}
-            {{ profile_dot_url|json_script:'profileDotURL' }}
-            <script src="{% static 'silk/js/pages/profile_detail.js' %}"></script>
-            {% endif %}
-
-            {% if silk_request.pyprofile %}
-            <div id="pyprofile-div">
-                <div class="heading">
-                    <div class="inner-heading">Python Profiler</div>
-                </div>
-                <div class="description">
-                    The below is a dump from the cPython profiler.
-                </div>
+            <!-- Use a grid layout to arrange sections in two rows -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <!-- Profile Graph Section -->
                 {% if silk_request.prof_file %}
-                Click <a href="{% url 'silk:request_profile_download' request_id=silk_request.pk %}">here</a> to download profile.
+                <div class="profile-graph-section p-4 bg-white rounded-md shadow-md">
+                    <div class="heading">
+                        <div class="inner-heading text-lg font-semibold">Profile graph</div>
+                    </div>
+                    <div class="description text-sm text-gray-700">
+                        Below is a graph of the profile, with the nodes coloured by the time taken (red is more time). This should give a good indication of the slowest path through the profiled code.
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <span class="mr-2">Prune nodes taking up less than </span>
+                        <input id='percent' type="text" value='5'
+                               onkeypress='return event.charCode >= 48 && event.charCode <= 57 && $("#percent").val().length < 2'
+                               oninput="createViz()"
+                               class="border rounded-md p-2 w-16 text-center">
+                        <span class="ml-2">% of the total time</span>
+                    </div>
+
+                    <div id="graph-div" class="mt-4">
+                    </div>
+                    {% url 'silk:request_profile_dot' request_id=silk_request.pk as profile_dot_url %}
+                    {{ profile_dot_url|json_script:'profileDotURL' }}
+                    <script src="{% static 'silk/js/pages/profile_detail.js' %}"></script>
+                </div>
                 {% endif %}
-                <pre class="pyprofile">{{ silk_request.pyprofile }}</pre>
+
+                <!-- Python Profiler Section -->
+                {% if silk_request.pyprofile %}
+                <div id="pyprofile-div" class="pyprofile-section p-4 bg-white rounded-md shadow-md">
+                    <div class="heading">
+                        <div class="inner-heading text-lg font-semibold">Python Profiler</div>
+                    </div>
+                    <div class="description text-sm text-gray-700">
+                        The below is a dump from the cPython profiler.
+                    </div>
+                    {% if silk_request.prof_file %}
+                    <div class="mt-2">
+                        Click <a href="{% url 'silk:request_profile_download' request_id=silk_request.pk %}" class="text-green-500 hover:text-green-700">here</a> to download profile.
+                    </div>
+                    {% endif %}
+                    <pre class="pyprofile bg-gray-100 p-4 rounded-md text-sm">{{ silk_request.pyprofile }}</pre>
+                </div>
                 {% endif %}
             </div>
-
         </div>
     </div>
-
 {% endblock %}

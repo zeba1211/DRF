@@ -91,8 +91,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'silk': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'silk_profiling_db.sqlite3',
+    },
 }
+#DATABASE_ROUTERS=['companyapi.routers.SilkDatabaseRouter']
+
+SILK_DATABASE = 'silk'
+
 
 
 # Password validation

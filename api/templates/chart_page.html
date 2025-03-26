@@ -1,0 +1,88 @@
+{% extends 'silk/base/root_base.html' %}
+{% load silk_inclusion %}
+{% load static %}
+
+{% block menu %}
+    {% root_menu request %}
+{% endblock %}
+
+{% block pagetitle %}Silky - Chart{% endblock %}
+
+{% block style %}
+    {{ block.super }}
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById('myChart').getContext('2d');
+
+            var chartData = {
+                labels: ['Requests', 'Response Time', 'Avg DB Time', 'API'],
+                datasets: [{
+                    label: 'Performance Metrics',
+                    data: [
+    '{{ chart_data.requests|default:"0" }}',
+    '{{ chart_data.profiles|default:"0" }}',
+    '{{ chart_data.avg_overall_time|default:"0" }}',
+    '{{ chart_data.avg_num_queries|default:"0" }}',
+    '{{ chart_data.avg_time_spent_on_queries|default:"0" }}'
+]
+,
+                    backgroundColor: [
+                        'rgba(52, 152, 219, 0.6)',
+                        'rgba(231, 76, 60, 0.6)',
+                        'rgba(46, 204, 113, 0.6)',
+                        'rgba(241, 196, 15, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(52, 152, 219, 1)',
+                        'rgba(231, 76, 60, 1)',
+                        'rgba(46, 204, 113, 1)',
+                        'rgba(241, 196, 15, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            var myChart = new Chart(ctx, {
+                type: 'bar',  // Keeping 'bar' as the type
+                data: chartData,
+                options: {
+                    responsive: true,
+                    indexAxis: 'y',  // This makes the bar chart horizontal
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Performance Metrics',
+                            font: {
+                                size: 20
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true  // Ensure the x-axis starts at 0
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block data %}
+    <div class="max-w-screen-xl mx-auto p-8 bg-blue-200">
+        <div class="inner">
+            <h2 class="text-3xl font-bold mb-6 text-black">Performance Chart</h2>
+            
+            <div id="chart-container" class="mt-8 w-full h-96">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -13,12 +13,12 @@
 
 {% block style %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'silk/css/pages/sql_detail.css' %}"/>
+    <!-- Apply the same TailwindCSS theme as in summary.html -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block menu %}
-
-    <a href="
+    <a href=" 
         {% if silk_request and profile %}
             {% url "silk:request_and_profile_sql" silk_request.id profile.id %}
         {% elif silk_request %}
@@ -27,67 +27,78 @@
             {% url "silk:profile_sql" profile.pk %}
         {% endif %}
     ">
-        <div class="menu-item selectable-menu-item">
+        <div class="menu-item selectable-menu-item bg-beige text-orange hover:bg-lightblue">
             <div class="menu-item-outer">
-                <div class="menu-item-inner">&larr;</div>
+                <div class="menu-item-inner text-lg">&larr;</div>
             </div>
         </div>
     </a>
 
-    <div class="menu-item menu-item-selected">
-        <div class="menu-item-outer ">
-            <div class="menu-item-inner">SQL Query</div>
+    <div class="menu-item menu-item-selected bg-orange text-white">
+        <div class="menu-item-outer">
+            <div class="menu-item-inner text-lg">SQL Query</div>
         </div>
     </div>
 {% endblock %}
 
 {% block data %}
-    <div class="wrapper">
-        <div id="query-div">
-            <pre id="query"><code>{{ sql_query.formatted_query|spacify|linebreaksbr }}</code></pre>
-            <div id="query-info-div">
-                <div id="time-taken-div">
-                    <span class="numeric">{{ sql_query.time_taken }}<span class="unit">ms</span></span>
-                </div>
-                <div id="num-joins-div">
-                    <span class="numeric">{{ sql_query.num_joins }}</span> joins
-                </div>
+    <div class="max-w-screen-xl mx-auto p-8" style="background-color: #64bff7;"> <!-- Similar to summary.html's background color -->
+        <div class="inner">
+            <h2 class="text-3xl font-bold mb-6 text-black">SQL Query Details</h2>
+            
+            <!-- SQL Query Info -->
+            <div class="bg-green-300 p-6 rounded-lg shadow-lg mb-6 !important">
+                <div class="text-xl font-semibold mb-4">SQL Query</div>
+                <pre id="query" class="bg-gray-100 p-4 rounded-lg">
+                    <code>{{ sql_query.formatted_query|spacify|linebreaksbr }}</code>
+                </pre>
             </div>
-
-        </div>
-        {% if analysis %}
-        <div id="query-plan-div">
-            <div class="heading">
-                <div class="inner-heading">
-                    Query Plan
+            
+            <div class="flex space-x-4 mb-6">
+                <div class="bg-green-300 p-6 rounded-lg shadow-lg text-center w-1/3">
+                    <div class="num text-4xl font-bold text-black">{{ sql_query.time_taken }}<span class="unit text-sm">ms</span></div>
+                    <div class="desc text-sm text-gray-600 mt-4">Time Taken</div>
                 </div>
-            </div>
-            <code id="plan">{{ analysis | spacify | linebreaksbr }}</code>
-        </div>
-        {% endif %}
-        <div id="traceback">
-            <div class="heading">
-                <div class="inner-heading">
-                    Traceback
+                <div class="bg-green-300 p-6 rounded-lg shadow-lg text-center w-1/3">
+                    <div class="num text-4xl font-bold text-black">{{ sql_query.num_joins }}</div>
+                    <div class="desc text-sm text-gray-600 mt-4">Joins</div>
                 </div>
             </div>
-            <div class="description">
-                The below is the Python stacktrace that leads up the execution of the above SQL query.
-                Use it to figure out where and why this SQL query is being executed and whether or not
-                it's actually neccessary.
-            </div>
-            {% for ln in traceback %}
-                {% if ln %}
-                    <div class="file-path {% if virtualenv_path not in ln %}not-{% else %}is-{% endif %}third-party">
-                        {{ ln }}
+            
+            {% if analysis %}
+                <div id="query-plan-div" class="mt-6">
+                    <div class="heading bg-orange text-white p-2 rounded-t-lg">
+                        <div class="inner-heading">
+                            Query Plan
+                        </div>
                     </div>
-                    {% if forloop.counter == pos %}
-                        {% code code actual_line %}
+                    <code id="plan" class="bg-gray-100 p-4 rounded-lg">{{ analysis | spacify | linebreaksbr }}</code>
+                </div>
+            {% endif %}
+            
+            <!-- Traceback -->
+            <div id="traceback" class="mt-6">
+                <div class="heading bg-orange text-white p-2 rounded-t-lg">
+                    <div class="inner-heading">
+                        Traceback
+                    </div>
+                </div>
+                <div class="description mt-2 text-sm text-gray-600">
+                    The below is the Python stacktrace that leads up to the execution of the above SQL query. Use it to figure out where and why this SQL query is being executed and whether or not it's actually necessary.
+                </div>
+                {% for ln in traceback %}
+                    {% if ln %}
+                        <div class="file-path {% if virtualenv_path not in ln %}not-{% else %}is-{% endif %}third-party mt-2 text-sm">
+                            {{ ln }}
+                        </div>
+                        {% if forloop.counter == pos %}
+                            <div class="mt-2 bg-gray-200 p-2 rounded-md">
+                                {% code code actual_line %}
+                            </div>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
-
-
 {% endblock %}

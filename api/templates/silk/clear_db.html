@@ -1,6 +1,7 @@
 {% extends 'silk/base/root_base.html' %}
 {% load silk_inclusion %}
 {% load static %}
+
 {% block pagetitle %}Silky - Clear DB{% endblock %}
 
 {% block menu %}
@@ -9,41 +10,55 @@
 
 {% block style %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'silk/css/pages/clear_db.css' %}"/>
+    <!-- Link to Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block js %}
     {{ block.super }}
     <script src="{% static 'silk/js/pages/clear_db.js' %}"></script>
 {% endblock %}
+
 {% block data %}
-    <div class="wrapper">
-        <div class="inner">
-            <h2>Silk Clear DB</h2>
-            <form class="cleardb-form" action="." method="post">
+    <!-- Tailwind-based theme for consistent design -->
+    <div class="bg-blue-300 text-black min-h-screen flex items-center justify-center py-6">
+        <div class="inner bg-white rounded-lg shadow-xl w-full max-w-4xl p-8">
+            <h2 class="text-3xl font-bold text-center mb-6 text-black-500">Silk Clear DB</h2>
+            
+            <!-- Form with Tailwind styling -->
+            <form class="cleardb-form space-y-6 bg-blue-50 p-6 rounded-lg shadow-lg" action="." method="post">
                 {% csrf_token %}
-                <div class="cleardb-form-wrapper">
-                    <label>
-                        <input type="checkbox" name="clear_requests" disabled="disabled"/>
-                        Requests
-                    </label>
-                    <label>
-                        <input type="checkbox" name="clear_profiling" disabled="disabled"/>
-                        Profiling
-                    </label>
-                    <label>
-                        <input type="checkbox" name="clear_all"/>
-                        All
-                    </label>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <input type="checkbox" name="clear_requests" disabled="disabled" class="form-checkbox text-blue-500 border-blue-500"/>
+                        <span class="text-black-700 text-lg">Requests</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <input type="checkbox" name="clear_profiling" disabled="disabled" class="form-checkbox text-blue-500 border-blue-500"/>
+                        <span class="text-black-700 text-lg">Profiling</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <input type="checkbox" name="clear_all" class="form-checkbox text-blue-500 border-blue-500"/>
+                        <span class="text-black-700 text-lg">All</span>
+                    </div>
                 </div>
-                <button class="btn">Clear</button>
+            
+                <!-- Clear button styled with blue color -->
+                <div class="text-center">
+                    <button type="submit" class="bg-green-500 hover:bg-blue-600 text-white py-2 px-6 rounded-md font-semibold mt-4 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all">
+                        Clear
+                    </button>
+                </div>
             </form>
-            <div class="msg">{{ msg|linebreaks }}</div>
+            
+            
+            <!-- Message Box -->
+            <div class="msg mt-6 p-4 bg-gray-100 text-sm rounded-md text-orange-500">
+                {{ msg|linebreaks }}
+            </div>
         </div>
     </div>
-
 {% endblock %}
 
-{# Hide filter hamburger menu #}
 {% block top %}{% endblock %}
 {% block filter %}{% endblock %}

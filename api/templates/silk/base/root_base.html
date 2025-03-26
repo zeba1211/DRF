@@ -8,15 +8,19 @@
 {% endblock %}
 
 {% block style %}
+    <!-- Link to Tailwind CSS CDN for consistent theming across all pages -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Existing custom styles (will not affect Tailwind classes) -->
     <link rel="stylesheet" href="{% static 'silk/css/components/cell.css' %}"/>
     <link rel="stylesheet" href="{% static 'silk/css/components/row.css' %}"/>
     <link rel="stylesheet" href="{% static 'silk/css/components/numeric.css' %}"/>
-    <link rel="stylesheet" href="{% static "silk/lib/jquery.datetimepicker.css" %}"/>
+    <link rel="stylesheet" href="{% static 'silk/lib/jquery.datetimepicker.css' %}"/>
     <link rel="icon" type="image/png" href="{% static 'silk/favicon-32x32.png' %}" sizes="32x32">
     <link rel="icon" type="image/png" href="{% static 'silk/favicon-16x16.png' %}" sizes="16x16">
-    <!-- Begin Custom Styles -->
+    
+    <!-- Custom styles for root_base -->
     <link rel="stylesheet" href="{% static 'silk/css/pages/root_base.css' %}"/>
-    <!-- End Custom Styles -->
 {% endblock %}
 
 {% block filter %}
@@ -30,7 +34,7 @@
 {% endblock %}
 
 {% block top %}
-    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right bg-blue-300 text-white" id="cbp-spmenu-s2" !important>
         <h3>Filters</h3>
 
         <form id="filter-form2" action="" method="post">
@@ -42,13 +46,13 @@
         <div class="button-div">
             <div class="apply-div" onclick="submitEmptyFilters()">Clear all filters</div>
         </div>
-        <div class="button-div">
+        <div class="button-div hover:bg-blue-700">
             <div class="apply-div" onclick="submitFilters()">Apply</div>
         </div>
-
+        
     </nav>
-
 {% endblock %}
+
 
 {% block js %}
     <script src="{% static 'silk/js/components/cell.js' %}"></script>

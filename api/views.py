@@ -162,34 +162,79 @@ class EmployeeUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 # views.py
 from django.shortcuts import render
 from django.db.models import Avg
-from silk.models import Request  # Adjust import based on your project structure
+from silk.models import Request , Profile# Adjust import based on your project structure
 
-def summary_view(request):
-    # Assuming you are gathering data from Silk's request logs
-    num_requests = Request.objects.count()
-    num_profiles = Request.objects.distinct('profile').count()
-    
-    # Example of gathering time statistics from Silk logs
-    avg_overall_time = Request.objects.aggregate(Avg('duration'))['duration__avg']
-    avg_num_queries = Request.objects.aggregate(Avg('num_queries'))['num_queries__avg']
-    avg_time_spent_on_queries = Request.objects.aggregate(Avg('db_duration'))['db_duration__avg']
-    
-    # Prepare data for Chart.js (request, response, avg db time, etc.)
-    chart_data = {
-        'requests': [num_requests],  # Example data, can be customized
-        'response_time': [avg_overall_time],
-        'avg_db_time': [avg_time_spent_on_queries],
-        'api': [num_profiles]  # API count can be based on profiles, for example
+def chart_page(request):
+    total_requests = Request.objects.count()
+    total_profiles = Profile.objects.count()
+
+    total_response_time=0
+    total_query_time=0
+    total_query_count=0
+
+    profiles=Profile.objects.all()
+
+    for profile in profiles:
+        total_response_time+=profile.time_taken or 0
+
+        queries=profile.queries.all()
+        total_query_count+=queries.count()
+
+        total_query_time+=sum(q.time_taken for q in queries)
+
+    avg_response_time=total_response_time / total_profiles if total_profiles else 0
+    avg_query_time=total_query_time / total_profiles if total_profiles else 0
+    avg_num_queries=total_query_count / total_profiles if total_profiles else 0
+
+    data = {
+    'chart_data': {
+        'requests': total_requests,
+        'profiles': total_profiles,
+        'avg_overall_time': round(avg_response_time * 1000, 2),
+        'avg_num_queries': round(avg_num_queries, 2),
+        'avg_time_spent_on_queries': round(avg_query_time * 1000, 2),
     }
-
-    return render(request, 'silk/summary.html', {
-        'num_requests': num_requests,
-        'num_profiles': num_profiles,
-        'avg_overall_time': avg_overall_time,
-        'avg_num_queries': avg_num_queries,
-        'avg_time_spent_on_queries': avg_time_spent_on_queries,
-        'chart_data': chart_data
-    })
+}
+    return render(request, 'chart_page.html', data)
 
 
+    # # Assuming you are gathering data from Silk's request logs
+    # num_requests = Request.objects.count()
+    # num_profiles = Request.objects.count()
+    
+    # # Example of gathering time statistics from Silk logs
+    # avg_overall_time = Request.objects.aggregate(Avg('duration'))['duration__avg']
+    # avg_num_queries = Request.objects.aggregate(Avg('num_queries'))['num_queries__avg']
+    # avg_time_spent_on_queries = Request.objects.aggregate(Avg('db_duration'))['db_duration__avg']
+    
+    # # Prepare data for Chart.js (request, response, avg db time, etc.)
+    # chart_data = {
+    #     'requests': [num_requests],  # Example data, can be customized
+    #     'response_time': [avg_overall_time],
+    #     'avg_db_time': [avg_time_spent_on_queries],
+    #     'api': [num_profiles]  # API count can be based on profiles, for example
+    # }
 
+    # return render(request, 'chart_page.html', {
+    #     'num_requests': num_requests,
+    #     'num_profiles': num_profiles,
+    #     'avg_overall_time': avg_overall_time,
+    #     'avg_num_queries': avg_num_queries,
+    #     'avg_time_spent_on_queries': avg_time_spent_on_queries,
+    #     'chart_data': chart_data
+    # })
+
+
+
+
+
+# def chart_page(request):
+#     # Example data, replace with actual dynamic data as needed
+#     chart_data = {
+#         'requests': 20,
+#         'profiles': 50,
+#         'avg_overall_time': 120,
+#         'avg_num_queries': 8,
+#         'avg_time_spent_on_queries': 60,
+#     }
+#     return render(request, 'chart_page.html', {'chart_data': chart_data})

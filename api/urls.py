@@ -16,5 +16,5 @@ urlpatterns = [
     path('employees/', EmployeeListCreateView.as_view(), name='employee-list-create'),
     path('employees/<int:pk>/', EmployeeUpdateDestroyView.as_view(),name='employee-details'),
   #custome chart.js URL
-
+    path('chart/', views.chart_page, name='chart_page'),
 ]

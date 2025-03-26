@@ -14,41 +14,41 @@
 
 {% block style %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'silk/css/pages/profiling.css' %}"/>
+    <!-- Using Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block filter %}
     <form id="filter-form" action="." method="get"></form>
 
-    <div class="menu-item">
+    <!-- Filter Section with Tailwind Theme -->
+    <div class="menu-item bg-blue-300 text-orange p-4 mb-4">
         <div class="menu-item-outer">
             <div class="menu-item-inner">
                 <label>Show:
-                    <select name="show" form="filter-form" onchange="this.form.submit();">
+                    <select name="show" form="filter-form" onchange="this.form.submit();" class="bg-green-300 text-orange border rounded-md p-2">
                         {% for option in options_show %}
-                            <option value="{{ option }}"
-                                    {% if option == show %}selected{% endif %}>{{ option }}</option>
+                            <option value="{{ option }}" {% if option == show %}selected{% endif %}>{{ option }}</option>
                         {% endfor %}
                     </select>
                 </label>
             </div>
         </div>
     </div>
-    <div class="menu-item">
+
+    <div class="menu-item bg-blue-300 text-orange p-4 mb-4">
         <div class="menu-item-outer">
             <div class="menu-item-inner">
                 <label>Order:
-                    <select name="order_by" form="filter-form" onchange="this.form.submit();">
+                    <select name="order_by" form="filter-form" onchange="this.form.submit();" class="bg-green-300 text-orange border rounded-md p-2">
                         {% for option in options_order_by %}
-                            <option value="{{ option }}"
-                                    {% if option == order_by %}selected{% endif %}>{{ option }}</option>
+                            <option value="{{ option }}" {% if option == order_by %}selected{% endif %}>{{ option }}</option>
                         {% endfor %}
                     </select>
                 </label>
             </div>
         </div>
     </div>
-    {{ block.super }}
 {% endblock %}
 
 {% block js %}
@@ -57,170 +57,69 @@
 {% endblock %}
 
 {% block filters %}
-    <h4>Profile</h4>
-
-    <div class="filter-section">Took longer than
-
-        <div class="resizing-input">
-            <input form="filter-form2"
-                   class="typ"
-                   type="hidden"
-                   value="OverallTimeFilter"
-                   name="filter-overalltime-typ"/>
-            <input type="text"
-                   placeholder="milliseconds"
-                   form="filter-form2"
-                   name="filter-overalltime-value"
-                   value="{{ filters.overalltime.value }}"/>
-            <span style="display:none"></span>
-        </div>
-        milliseconds,
-        executed more than
-        <div class="resizing-input">
-            <input form="filter-form2"
-                   class="typ"
-                   type="hidden"
-                   value="NumQueriesFilter"
-                   name="filter-numqueriesfilter-typ"/>
-            <input
-                    type="text"
-                    placeholder="n"
-                    form="filter-form2"
-                    name="filter-numqueriesfilter-value"
-                    value="{{ filters.numqueriesfilter.value }}"/>
-            <span style="display:none"></span>
-        </div>
-        queries,
-        and spent longer than
-        <div class="resizing-input">
-
-            <input form="filter-form2"
-                   class="typ"
-                   type="hidden"
-                   value="TimeSpentOnQueriesFilter"
-                   name="filter-timespentfilter-typ"/>
-            <input
-                    type="text"
-                    placeholder="milliseconds"
-                    form="filter-form2"
-                    name="filter-timespentfilter-value"
-                    value="{{ filters.timespentfilter.value }}"/>
-            <span style="display:none"></span>
-        </div>
+    <!-- Filters Section -->
+    <h4 class="text-orange">Profile</h4>
+    <div class="filter-section bg-#64bff7 text-orange p-4 mb-4">
+        Took longer than
+        <input form="filter-form2" class="typ border rounded-md p-2" type="text" placeholder="milliseconds" name="filter-overalltime-value" value="{{ filters.overalltime.value }}"/>
+        milliseconds, executed more than
+        <input form="filter-form2" class="typ border rounded-md p-2" type="text" placeholder="n" name="filter-numqueriesfilter-value" value="{{ filters.numqueriesfilter.value }}"/>
+        queries, and spent longer than
+        <input form="filter-form2" class="typ border rounded-md p-2" type="text" placeholder="milliseconds" name="filter-timespentfilter-value" value="{{ filters.timespentfilter.value }}"/>
         milliseconds executing queries.
     </div>
-    <h4>Date Range</h4>
-    <div class="filter-section">
-        Executed
-        <div class="resizing-input">
-            <input form="filter-form2"
-                   class="typ"
-                   type="hidden"
-                   value="SecondsFilter"
-                   name="filter-seconds-typ">
-            <input type="text"
-                   placeholder="seconds"
-                   form="filter-form2"
-                   name="filter-seconds-value"
-                   value="{{ filters.seconds.value }}"
-                    >
-            <span style="display:none"></span>
-        </div>
-        seconds ago, before
-        <div class="resizing-input">
-            <input form="filter-form2"
-                   class="typ"
-                   type="hidden"
-                   value="BeforeDateFilter"
-                   name="filter-beforedate-typ">
-            <input class="datetimepicker"
-                   type="text"
-                   placeholder="date"
-                   form="filter-form2"
-                   name="filter-beforedate-value"
-                   value="{{ filters.beforedate.value }}"
-                    />
-            <span style="display:none"></span>
-        </div>
-        , and after
-        <div class="resizing-input">
 
-            <input form="filter-form2"
-                   class="typ"
-                   type="hidden"
-                   value="AfterDateFilter"
-                   name="filter-afterdate-typ">
-            <input class="datetimepicker"
-                   type="text"
-                   placeholder="date"
-                   form="filter-form2"
-                   name="filter-afterdate-value"
-                   value="{{ filters.afterdate.value }}"
-                    >
-            <span style="display:none"></span>
-        </div>
+    <h4 class="text-orange">Date Range</h4>
+    <div class="filter-section bg-beige text-orange p-4 mb-4">
+        Executed
+        <input form="filter-form2" class="typ border rounded-md p-2" type="text" placeholder="seconds" name="filter-seconds-value" value="{{ filters.seconds.value }}"/>
+        seconds ago, before
+        <input class="datetimepicker border rounded-md p-2" type="text" form="filter-form2" name="filter-beforedate-value" value="{{ filters.beforedate.value }}"/>
+        , and after
+        <input class="datetimepicker border rounded-md p-2" type="text" form="filter-form2" name="filter-afterdate-value" value="{{ filters.afterdate.value }}"/>
         .
     </div>
-    <h4>Function</h4>
-    <div class="filter-section">
-        <div>
-            <input form="filter-form2"
-                   class="typ"
-                   type="hidden"
-                   value="NameFilter"
-                   name="filter-name-typ">
-            <label>Name:
-                <select form="filter-form2" name="filter-name-value">
-                    <option value="" {% if not filters.name.value %}selected{% endif %}></option>
-                    {% for name in options_names %}
-                        <option {% if name == filters.name.value %}selected{% endif %}>{{ name }}</option>
-                    {% endfor %}
-                </select>
-            </label>
 
-        </div>
-        <div>
-            <input form="filter-form2"
-                   class="typ"
-                   type="hidden"
-                   value="FunctionNameFilter"
-                   name="filter-functionname-typ">
-            <label>Function:
-                <select form="filter-form2" name="filter-functionname-value">
-                    <option value="" {% if not filters.functionname.value %}selected{% endif %}></option>
-                    {% for func_name in options_func_names %}
-                        <option {% if func_name == filters.functionname.value %}selected{% endif %}>{{ func_name }}</option>
-                    {% endfor %}
-                </select>
-            </label>
-
-        </div>
-
-
+    <h4 class="text-orange">Function</h4>
+    <div class="filter-section bg-beige text-orange p-4 mb-4">
+        <label>Name:
+            <select form="filter-form2" name="filter-name-value" class="bg-white text-orange border rounded-md p-2">
+                <option value="" {% if not filters.name.value %}selected{% endif %}></option>
+                {% for name in options_names %}
+                    <option {% if name == filters.name.value %}selected{% endif %}>{{ name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>Function:
+            <select form="filter-form2" name="filter-functionname-value" class="bg-white text-orange border rounded-md p-2">
+                <option value="" {% if not filters.functionname.value %}selected{% endif %}></option>
+                {% for func_name in options_func_names %}
+                    <option {% if func_name == filters.functionname.value %}selected{% endif %}>{{ func_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
     </div>
 {% endblock %}
 
 {% block data %}
-
     {% if results %}
-        <div class="container">
-            <h2>Silk Profiler</h2>
+        <div class="max-w-screen-xl mx-auto p-8 bg-blue-300">
+            <h2 class="text-3xl font-bold text-black">Silk Profiler</h2>
+            {% for profile in results %}
+                <a href="
+                    {% if silk_request %}
+                        {% url "silk:request_profile_detail" request_id=silk_request.pk profile_id=profile.pk %}
+                    {% else %}
+                        {% url "silk:profile_detail" profile_id=profile.pk %}
+                    {% endif %}
+                    " class="block bg-blue-200 p-4 mb-4 rounded-md shadow-lg hover:bg-green-200">
+                    {% profile_summary profile %}
+                </a>
+            {% endfor %}
         </div>
-        {% for profile in results %}
-            <a href="
-            {% if silk_request %}
-                {% url "silk:request_profile_detail" request_id=silk_request.pk profile_id=profile.pk %}
-            {% else %}
-                {% url "silk:profile_detail" profile_id=profile.pk %}
-            {% endif %}
-            ">
-                {% profile_summary profile %}
-            </a>
-        {% endfor %}
     {% else %}
-        <div class="container">
-            <h2>Silk Profiler</h2>
-
+        <div class="container bg-blue-300 text-orange p-4">
+            <h2 class="text-2xl">Silk Profiler</h2>
             <div class="description">
                 No Silk profiling was performed for this request. Please check that:
                 <ul>
