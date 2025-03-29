@@ -76,10 +76,17 @@
             {% endif %}
 
             <!-- Button to navigate to the chart page -->
+             <!-- api app -->
             <div class="text-center mb-8">
                 
-                <a href="{% url 'chart_page' %}" class="bg-blue-500 text-white p-4 rounded-lg hover:bg-green-300 transition-all">View Performance Chart</a>
+                <a href="{% url 'chart_page' %}" class="bg-blue-500 text-white p-4 rounded-lg hover:bg-green-300 transition-all">Performance Chart App1 </a>
             </div>
+            <!-- department app -->
+            <div class="text-center mb-8">
+                
+                <a href="{% url 'chart_page2' %}" class="bg-blue-500 text-white p-4 rounded-lg hover:bg-green-300 transition-all">Performance Chart App2</a>
+            </div>
+             
 
             <h2 class="text-3xl font-bold mt-10 text-black">Most Time Overall</h2>
             {% if longest_queries_by_view %}

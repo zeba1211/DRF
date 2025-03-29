@@ -36,6 +36,7 @@ def silk_view(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/',include('api.urls')),
+    path('dept/', include('department.urls')),
     # Silk profiling URL with restricted access
     path('silk/', include('silk.urls', namespace='silk')),  # Use the custom view to control access
 ]
